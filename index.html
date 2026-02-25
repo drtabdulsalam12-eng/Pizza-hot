@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بيتزا النار  | المنيو الرسمي</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <a href="#offers"> العروض</a>
+        <a href="#menu"> المنيو</a>
+        <a href="#about"> عننا</a>
+        <a href="#location"> موقعنا</a>
+    </nav>
+
+    <div class="app-container">
+        <header class="main-header">
+            <div class="brand-box">
+                <h1>بيتزا النار </h1>
+                <p>الطعم الأصلي في كل قطمة</p>
+            </div>
+        </header>
+
+        <section id="offers" class="section">
+            <h2 class="section-title"> عروض حصرية</h2>
+            <div class="grid-container">
+                <div class="item-card offer-card">
+                    <img src="family.JPG" alt="عرض العائلة">
+                    <div class="info">
+                        <h3>عرض العائلة</h3>
+                        <p class="price">450 ج.م</p>
+                        <button onclick="addToCart('عرض العائلة', 450)">إضافة للطلب</button>
+                    </div>
+                </div>
+                <div class="item-card offer-card">
+                    <img src="friends.JPG" alt="عرض الاصدقاء">
+                    <div class="info">
+                        <h3>عرض الاصدقاء</h3>
+                        <p class="price">320 ج.م</p>
+                        <button onclick="addToCart('عرض الاصدقاء', 320)">إضافة للطلب</button>
+                    </div>
+                </div>
+                <div class="item-card offer-card">
+                    <img src="khas.JPG" alt="عرض الوجبة الخاصه">
+                    <div class="info">
+                        <h3>عرض الوجبة الخاصة</h3>
+                        <p class="price">180 ج.م</p>
+                        <button onclick="addToCart('عرض الوجبة الخاصة', 180)">إضافة للطلب</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <h2 class="section-title"> قائمة البيتزا والأصناف</h2>
+            <div class="list-container">
+                <div class="list-item">
+                    <img src="marge.JPG" alt="مارجريتا">
+                    <div class="details">
+                        <h3>بيتزا مارجريتا</h3>
+                        <p>120 ج.م</p>
+                        <button onclick="addToCart('بيتزا مارجريتا', 120)">+</button>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <img src="dagag.JPG" alt="دجاج رانش">
+                    <div class="details">
+                        <h3>بيتزا دجاج رانش</h3>
+                        <p>160 ج.م</p>
+                        <button onclick="addToCart('بيتزا دجاج رانش', 160)">+</button>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <img src="sefo.JPG" alt="سي فود">
+                    <div class="details">
+                        <h3>بيتزا سي فود</h3>
+                        <p>210 ج.م</p>
+                        <button onclick="addToCart('بيتزا سي فود', 210)">+</button>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <img src="moza.JPG" alt="موتزاريلا">
+                    <div class="details">
+                        <h3>اصابع موتزاريلا</h3>
+                        <p>85 ج.م</p>
+                        <button onclick="addToCart('اصابع موتزاريلا', 85)">+</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-section">
+            <div class="about-card">
+                <h3> عن بيتزا النار</h3>
+                <p>نحن نستخدم أجود أنواع المكونات الطازجة لتقديم تجربة بيتزا لا تُنسى. بدأت رحلتنا من الشغف بتقديم أكل بيتي بجودة عالمية.</p>
+            </div>
+
+            <div id="location" class="location-card">
+                <h3> مكاننا</h3>
+                <p>القاهرة - حي المعادي - شارع 9 الرئيسي</p>
+                <div class="map-placeholder">يمكنك زيارتنا يومياً من 12 م إلى 2 ص</div>
+            </div>
+        </section>
+
+        <div id="orderModal" class="modal">
+            <div class="modal-content">
+                <h3>بيانات الطلب 📋</h3>
+                <input type="text" id="userName" placeholder="الاسم بالكامل">
+                <input type="tel" id="userPhone" placeholder="رقم الموبايل">
+                <div class="mode-selector">
+                    <label><input type="radio" name="orderWay" value="تيك اواي" checked onclick="toggleTable(false)"> 🥡 تيك اواي</label>
+                    <label><input type="radio" name="orderWay" value="داخل المطعم" onclick="toggleTable(true)"> 🍽️ في المطعم</label>
+                </div>
+                <input type="number" id="tableNo" placeholder="رقم الترابيزة" style="display:none;">
+                <button class="confirm-btn" onclick="checkout()">تأكيد وطلب عبر واتساب 🚀</button>
+                <button class="cancel-btn" onclick="closeModal()">رجوع</button>
+            </div>
+        </div>
+
+        <div class="bottom-bar" onclick="openModal()">
+            <div class="cart-summary">
+                <span id="cart-count">0</span> أصناف | الإجمالي: <span id="cart-total">0</span> ج.م
+            </div>
+            <div class="cart-action">اطلب الآن 🛒</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
